@@ -30,7 +30,7 @@ def get_argparser():
     parser.add_argument("--dataset", type=str, default='muad',
                         choices=['voc', 'cityscapes','muad'], help='Name of dataset')
     parser.add_argument("--num_classes", type=int, default=None,
-                        help="num classes (default: None)")
+                        help="num classes (default: None), defined in the code according to the dataset")
 
     # Deeplab Options
     parser.add_argument("--model", type=str, default='deeplabv3plus_mobilenet',
@@ -46,7 +46,7 @@ def get_argparser():
                         help="save segmentation results to \"./results\"")
     parser.add_argument("--crop_val", action='store_true', default=False,
                         help='crop validation (default: False)')
-    parser.add_argument("--val_batch_size", type=int, default=4,
+    parser.add_argument("--val_batch_size", type=int, default=1,
                         help='batch size for validation (default: 4)')
     parser.add_argument("--crop_size", type=int, default=513)
     
@@ -162,6 +162,8 @@ def validate(opts, model, loader, device, metrics):
                     plt.savefig('results/%d_overlay.png' % img_id, bbox_inches='tight', pad_inches=0)
                     plt.close()
                     img_id += 1
+                    if img_id > 2:
+                        exit()
 
         score = metrics.get_results()
     return score
@@ -192,7 +194,7 @@ def main():
         opts.val_batch_size = 1
 
     val_dst = get_dataset(opts)
-    val_loader = data.DataLoader(val_dst, batch_size=opts.val_batch_size, shuffle=True, num_workers=2)
+    val_loader = data.DataLoader(val_dst, batch_size=opts.val_batch_size, shuffle=False, num_workers=2)
     print("Dataset: %s,  Val set: %d" %
             (opts.dataset, len(val_dst)))
 
@@ -215,7 +217,6 @@ def main():
         exit()
 
     if opts.ckptpath is not None and os.path.isfile(opts.ckptpath):
-        # https://github.com/VainF/DeepLabV3Plus-Pytorch/issues/8#issuecomment-605601402, @PytaichukBohdan
         checkpoint = torch.load(opts.ckptpath, map_location=torch.device('cpu'))
         model.load_state_dict(checkpoint["model_state"])
         model = nn.DataParallel(model, device_ids=range(torch.cuda.device_count()))

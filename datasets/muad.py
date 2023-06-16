@@ -228,7 +228,6 @@ class MUAD(data.Dataset):
         image = cv.imread(image_path)
         image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
         segm = cv.imread(segm_path)
-        # print('segm_path',segm_path,np.shape(segm))
         segm = cv.cvtColor(segm, cv.COLOR_BGR2RGB)
         target = np.zeros((segm.shape[0], segm.shape[1])) + 255
 
@@ -258,7 +257,7 @@ class MUAD(data.Dataset):
 
 if __name__ == '__main__':
 
-    train_data = dataset(root_dataset='../av-challenge', root_odgt='./data', split='val')
+    train_data = MUAD(root_dataset='../av-challenge', root_odgt='./data', split='val')
     train_loader = data.DataLoader(
         train_data, batch_size=1, shuffle=True, num_workers=2)
     # train_queue = torch.utils.data.DataLoader(
