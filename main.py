@@ -281,26 +281,21 @@ def main():
             'deeplabv3_mobilenet': network.deeplabv3_mobilenet,
             'deeplabv3plus_mobilenet': network.deeplabv3plus_mobilenet
         }
-
         model = model_map[opts.model](num_classes=opts.num_classes, output_stride=opts.output_stride)
         if opts.separable_conv and 'plus' in opts.model:
             network.convert_to_separable_conv(model.classifier)
         utils.set_bn_momentum(model.backbone, momentum=0.01)
-    elif 'FCN_resnet50' == opts.model:
-        model = FCN8s(opts.crop_size, spectral_normalization=True, pretrained=False, n_class=opts.num_classes)
-
+    else:
+        print('Unknown model type. Existing.')
+        exit()
     # Set up metrics
     metrics = StreamSegMetrics(opts.num_classes)
 
     # Set up optimizer
-    if 'deeplabv3' in opts.model:
-        optimizer = torch.optim.SGD(params=[
-            {'params': model.backbone.parameters(), 'lr': 0.1 * opts.lr},
-            {'params': model.classifier.parameters(), 'lr': opts.lr},
-        ], lr=opts.lr, momentum=0.9, weight_decay=opts.weight_decay)
-
-    elif 'FCN_resnet50' == opts.model:
-        optimizer = torch.optim.SGD(params=model.parameters(), lr=opts.lr, momentum=0.9, weight_decay=opts.weight_decay)
+    optimizer = torch.optim.SGD(params=[
+        {'params': model.backbone.parameters(), 'lr': 0.1 * opts.lr},
+        {'params': model.classifier.parameters(), 'lr': opts.lr},
+    ], lr=opts.lr, momentum=0.9, weight_decay=opts.weight_decay)
 
     # optimizer = torch.optim.SGD(params=model.parameters(), lr=opts.lr, momentum=0.9, weight_decay=opts.weight_decay)
     # torch.optim.lr_scheduler.StepLR(optimizer, step_size=opts.lr_decay_step, gamma=opts.lr_decay_factor)
