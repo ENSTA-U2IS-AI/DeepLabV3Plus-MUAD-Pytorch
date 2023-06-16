@@ -5,11 +5,9 @@ DeepLabV3 and DeepLabV3+ with MobileNetv2 and ResNet backbones for Pytorch.
 ## Results
 
 
-|  Model          | Batch Size  | FLOPs  | train/val OS   |  mIoU        | Checkpoint  |
-| :--------        | :-------------: | :----:   | :-----------: | :--------: | :--------: | 
-| DeepLabV3Plus-ResNet101     | 16      |  83.4G     |  16/16   |  0.783     |    [Download](https://www.dropbox.com/s/bm3hxe7wmakaqc5/best_deeplabv3plus_resnet101_voc_os16.pth?dl=0)   |
-
-
+|  Model          |      |mIoU | Mean Acc  |    Checkpoint    |
+| :--------        | :-------------:    | :-----------:| :----: | :--------: |
+| DeepLabV3Plus-ResNet101     |        | 82.6644   | 86.8975 |  [[GoogleDrive]](https://drive.google.com/file/d/1buUqaNxHOPcaSpO-nS1UTLTL2FkJAzHd/view)  [[HuggingFace]](https://huggingface.co/Xuanlong/MUAD_DeepLabmodel)   |  
 
 ## Quick Start
 
@@ -32,7 +30,7 @@ CUDA_VISIBLE_DEVICES=0,1 python3 main.py \
 
 ### 3. Test
 
-Results will be saved at ./results.
+Results will be saved at ./results if set --save_val_results
 
 ```bash
 python evaluate_miou.py --data_root "/path_to_muad_dataset/" \

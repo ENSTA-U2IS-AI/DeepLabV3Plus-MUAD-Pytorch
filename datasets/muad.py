@@ -227,12 +227,13 @@ class MUAD(data.Dataset):
 
         image = cv.imread(image_path)
         image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
-        segm = cv.imread(segm_path)
-        segm = cv.cvtColor(segm, cv.COLOR_BGR2RGB)
+        # segm = cv.imread(segm_path)
+        # segm = cv.cvtColor(segm, cv.COLOR_BGR2RGB)
+        segm = plt.imread(segm_path) * 255.
         target = np.zeros((segm.shape[0], segm.shape[1])) + 255
 
         for c in self.classes:
-            upper = np.array(c.object_id)
+            upper = np.array(c.train_id)
             lower = upper
             mask = cv.inRange(segm, lower, upper)
             target[mask == 255] = c.train_id

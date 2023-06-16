@@ -162,8 +162,6 @@ def validate(opts, model, loader, device, metrics):
                     plt.savefig('results/%d_overlay.png' % img_id, bbox_inches='tight', pad_inches=0)
                     plt.close()
                     img_id += 1
-                    if img_id > 2:
-                        exit()
 
         score = metrics.get_results()
     return score
