@@ -9,6 +9,20 @@ DeepLabV3 and DeepLabV3+ with MobileNetv2 and ResNet backbones for Pytorch.
 | :--------        | :-------------:    | :-----------:| :----: | :--------: |
 | DeepLabV3Plus-ResNet101     |        | 82.6644   | 86.8975 |  [[GoogleDrive]](https://drive.google.com/file/d/1buUqaNxHOPcaSpO-nS1UTLTL2FkJAzHd/view)  [[HuggingFace]](https://huggingface.co/Xuanlong/MUAD_DeepLabmodel)   |  
 
+<div>
+<img src="samples/0_image.png"   width="22%">
+<img src="samples/0_target.png"  width="22%">
+<img src="samples/0_pred.png"    width="22%">
+<img src="samples/0_overlay.png" width="22%">
+</div>
+
+<div>
+<img src="samples/55_image.png"   width="22%">
+<img src="samples/55_target.png"  width="22%">
+<img src="samples/55_pred.png"    width="22%">
+<img src="samples/55_overlay.png" width="22%">
+</div>
+
 ## Quick Start
 
 ### 1. Requirements
