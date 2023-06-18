@@ -42,8 +42,7 @@ CUDA_VISIBLE_DEVICES=0,1 python3 main.py \
 --output_stride 8 --batch_size 12 --crop_size 768 --gpu_id 0,1 --lr 0.1 --val_batch_size 2
 ```
 
-### 3. Test
-
+### 3. Evaluate on MUAD validation set
 Results will be saved at ./results if set --save_val_results
 
 ```bash
@@ -52,6 +51,19 @@ python evaluate_miou.py --data_root "/path_to_muad_dataset/" \
 --ckptpath ./checkpoints/best_deeplabv3plus_resnet101_muad_os8.pth \
 --dataset muad --model deeplabv3plus_resnet101 --output_stride 8
 ```
+
+### 3. Inference (generate outputs for UNCV MUAD challenge)
+Here is an example for you to submit your results to UNCV MUAD challenge on Codalab. 
+```bash
+python challenge_example.py --data_root  "/path_to_challenge_test_leftImg8bit_folder/" \
+--ckptpath ./checkpoints/best_deeplabv3plus_resnet101_muad_os8.pth \
+--dataset muad --model deeplabv3plus_resnet101 --output_stride 8
+```
+
+```bash
+cd ./submission/ && zip ../submission.zip * && cd ..
+```
+Then you can submit submission.zip to the corresponding place on the challenge page.
 
 ## Reference
 
