@@ -13,7 +13,7 @@ import torch.utils.data as data
 
 
 class MUAD(data.Dataset):
-    """Cityscapes <http://www.cityscapes-dataset.com/> Dataset.
+    """The MUAD <https://muad-dataset.github.io/> Dataset.
 
     **Parameters:**
         - **root** (string): Root directory of dataset where directory 'leftImg8bit' and 'gtFine' or 'gtCoarse' are located.
