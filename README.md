@@ -5,9 +5,9 @@ DeepLabV3 and DeepLabV3+ with MobileNetv2 and ResNet backbones for Pytorch.
 ## Results
 
 
-|  Model          |      |mIoU | Mean Acc  |    Checkpoint    |
-| :--------        | :-------------:    | :-----------:| :----: | :--------: |
-| DeepLabV3Plus-ResNet101     |        | 82.6644   | 86.8975 |  [[GoogleDrive]](https://drive.google.com/file/d/1buUqaNxHOPcaSpO-nS1UTLTL2FkJAzHd/view)  [[HuggingFace]](https://huggingface.co/Xuanlong/MUAD_DeepLabmodel)   |  
+|  Model          | mIoU | Mean Acc  |    Checkpoint    |
+| :--------        | :-----------:| :----: | :--------: |
+| DeepLabV3Plus-ResNet101     | 82.6644   | 86.8975 |  [[GoogleDrive]](https://drive.google.com/file/d/1buUqaNxHOPcaSpO-nS1UTLTL2FkJAzHd/view)  [[HuggingFace]](https://huggingface.co/Xuanlong/MUAD_DeepLabmodel)   |  
 
 <div>
 <img src="samples/0_image.png"   width="22%">
@@ -22,6 +22,10 @@ DeepLabV3 and DeepLabV3+ with MobileNetv2 and ResNet backbones for Pytorch.
 <img src="samples/55_pred.png"    width="22%">
 <img src="samples/55_overlay.png" width="22%">
 </div>
+
+## Download and use MUAD on a headless server with TorchUncertainty
+
+You will find a torchvision dataset for the training and validation set at [[TorchUncertainty]](https://github.com/ENSTA-U2IS-AI/torch-uncertainty).
 
 ## Quick Start
 
