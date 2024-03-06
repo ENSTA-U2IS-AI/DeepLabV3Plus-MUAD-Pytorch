@@ -2,6 +2,8 @@
 
 DeepLabV3 and DeepLabV3+ with MobileNetv2 and ResNet backbones for Pytorch.
 
+**Use [[TorchUncertainty]](https://github.com/ENSTA-U2IS-AI/torch-uncertainty) to download and use MUAD easily.**
+
 ## Results
 
 
